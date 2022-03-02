@@ -18,6 +18,6 @@ stages:
 
 - stage: 'Test'
   jobs:
-  - job: 'Checkmarx_Scan'
+  - job: 'Unit_Test'
     steps:
-    - script: echo Checkmarx Scan
+    - script: echo Unit Tests
