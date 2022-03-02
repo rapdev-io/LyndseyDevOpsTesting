@@ -19,6 +19,5 @@ stages:
 - stage: 'Test'
   jobs:
   - job: 'Checkmarx_Scan'
-    dependsOn: 'Unit_Tests'
     steps:
     - script: echo Checkmarx Scan
