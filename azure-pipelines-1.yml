@@ -10,37 +10,28 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-
-  stages:
-  - stage: 'Build'
-    jobs:
-    - job: 'Build'
-      steps:
-      - script: echo Build
-      - task: ServiceNow.vss-services-servicenow-devops.serviceNowDevOps-agent-artifact-registration.ServiceNow-DevOps-Agent-Artifact-Registration@1
-    displayName: 'ServiceNow DevOps Agent Artifact Registration'
-    inputs:
-      connectedServiceName: x
-      artifactsPayload: |
-      {
-          "artifacts": [
-            {
-                "name": "_Pipeline 2",
-                "version": "1.$(Build.BuildId)",
-                "semanticVersion": "1.$(Build.BuildId).0",
-                "repositoryName": "Pipeline 2"
-            }
-          ]
-      }
-
 - stage: 'Build'
   jobs:
   - job: 'Build'
     steps:
     - script: echo Build
+    - task: ServiceNow-DevOps-Agent-Artifact-Registration@1
+      inputs:
+        connectedServiceName: 'dev88076-Jon - DevOps-ServiceNow DevOps Service Connection'
+        artifactsPayload: |
+          {
+            "artifacts": [
+                {
+                  "name": "_Pipeline 2",
+                  "version": "1.$(Build.BuildId)",
+                  "semanticVersion": "1.$(Build.BuildId).0",
+                  "repositoryName": "Pipeline 2"
+                }
+            ]
+          }
 
 - stage: 'Test'
   jobs:
-  - job: 'Unit_Test'
+  - job: 'Unit_Tests'
     steps:
     - script: echo Unit Tests
