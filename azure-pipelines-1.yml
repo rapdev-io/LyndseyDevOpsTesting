@@ -17,7 +17,7 @@ stages:
     - script: echo Build
     - task: ServiceNow-DevOps-Agent-Artifact-Registration@1
       inputs:
-        connectedServiceName: 'dev88076-Jon - DevOps-ServiceNow DevOps Service Connection'
+        connectedServiceName: 'x'
         artifactsPayload: |
           {
             "artifacts": [
