@@ -24,8 +24,8 @@ stages:
         "artifacts": [
            {
               "name": "testName",
-              "version": "1.$(Build.BuildId)",
-              "semanticVersion": "1.$(Build.BuildId).0",
+              "version": "1.1.0",
+              "semanticVersion": "1.1.0",
               "repositoryName": "DevOpsWorkshop"
            }
         ]
