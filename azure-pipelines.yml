@@ -34,7 +34,7 @@ stages:
     - script: echo UAT Deploy
 
   - job: 'Production_Deploy'
-    pool: server
+    #pool: server
     dependsOn: 'UAT_Deploy'
     steps:
     - script: echo Production Deploy
