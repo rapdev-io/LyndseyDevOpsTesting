@@ -47,6 +47,22 @@ stages:
   - job: 'UAT_Deploy'
     steps:
     - script: echo UAT Deploy
+    - task: ServiceNow.vss-services-servicenow-devops.serviceNowDevOps-agent-package-registration.ServiceNow-DevOps-Agent-Package-Registration@1
+    displayName: 'ServiceNow DevOps Agent Package Registration'
+    inputs:
+        connectedServiceName: x
+        packageName: 'Package 1'
+        artifactsPayload: |
+        {
+                "artifacts": [
+                    {
+                        "name": "testName",
+                        "version": "1.1.0",
+                        "semanticVersion": "1.1.0",
+                        "repositoryName": "DevOpsWorkshop"
+                    }
+                ]
+            }
 
   - job: 'Production_Deploy'
     #pool: server
