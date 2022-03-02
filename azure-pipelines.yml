@@ -15,33 +15,12 @@ stages:
   - job: 'Build'
     steps:
     - script: echo Build
-    - task: ServiceNow-DevOps-Agent-Artifact-Registration@1
-      inputs:
-        connectedServiceName: 'dev88076-Jon - DevOps-ServiceNow DevOps Service Connection'
-        artifactsPayload: |
-          {
-             "artifacts": [
-                {
-                   "name": "lyndsey-devops.war",
-                   "version": "1.$(Build.BuildId)",
-                   "semanticVersion": "1.$(Build.BuildId).0",
-                   "repositoryName": "DevOpsWorkshop"
-                }
-             ]
-          }
 
 - stage: 'Test'
   jobs:
   - job: 'Unit_Tests'
     steps:
     - script: echo Unit Tests
-    - task: CmdLine@2
-      inputs:
-        script: |
-          NOW=$(date +"%Y-%m-%dT%T-0500")
-          testPayload='{"name":"Test-summary-1.0.0","duration":0.0,"passedTests":10,"failedTests":1,"skippedTests":0,"blockedTests":0,"totalTests":11,"startTime":"'$NOW'","finishTime":"'$NOW'"}'
-          echo $testPayload
-          curl -X POST -H 'Content-Type: application/json' -u 'devops.integration.user:Lyndsey2021'  -d $testPayload 'https://dev88076.service-now.com/api/sn_devops/v1/devops/tool/test?orchestrationToolId\=cb561b582f4201109d85b6a62799b651\&toolId=1090006c2f0601109d85b6a62799b6a0'
 
   - job: 'Checkmarx_Scan'
     dependsOn: 'Unit_Tests'
@@ -53,25 +32,9 @@ stages:
   - job: 'UAT_Deploy'
     steps:
     - script: echo UAT Deploy
-    - task: ServiceNow-DevOps-Agent-Package-Registration@1
-      inputs:
-        connectedServiceName: 'dev86494-Lyndsey - DevOps-ServiceNow DevOps Service Connection'
-        packageName: 'Workshop Package'
-        artifactsPayload: |
-          {
-              "artifacts": [
-              {
-                  "name": "lyndsey-devops.war",
-                  "repositoryName": "DevOpsWorkshop",
-                  "version": "1.$(build.buildId)",
-                  "currentBuildInfo": "true"
-              }]
-          }
-  
+
   - job: 'Production_Deploy'
     pool: server
     dependsOn: 'UAT_Deploy'
     steps:
-    - task: ServiceNow-DevOps-Server-Change-Acceleration@1
-      inputs:
-        connectedServiceName: 'dev86494-Lyndsey - DevOps-ServiceNow DevOps Service Connection'
+    - script: echo Production Deploy
