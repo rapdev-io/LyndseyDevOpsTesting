@@ -22,7 +22,7 @@ stages:
           {
             "artifacts": [
               {
-                  "name": "testName",
+                  "name": "testName.war",
                   "version": "1.$(Build.BuildId)",
                   "semanticVersion": "1.$(Build.BuildId).0",
                   "repositoryName": "Pipeline 1"
@@ -39,7 +39,7 @@ stages:
       inputs:
         script: |
           NOW=$(date +"%Y-%m-%dT%T-0500")
-          testPayload='{"name":"Test-summary-1.$(Build.BuildId).0","duration":0.0,"passedTests":10,"failedTests":1,"skippedTests":0,"blockedTests":0,"totalTests":11,"startTime":"'$NOW'","finishTime":"'$NOW'","artifacts":[{"name":"testName","version":"1.$(Build.BuildId)"}]}'
+          testPayload='{"name":"Test-summary-1.$(Build.BuildId).0","duration":0.0,"passedTests":10,"failedTests":1,"skippedTests":0,"blockedTests":0,"totalTests":11,"startTime":"'$NOW'","finishTime":"'$NOW'","artifacts":[{"name":"testName.war","version":"1.$(Build.BuildId)"}]}'
           echo here payload
           echo $testPayload
           echo here 2 payload
@@ -64,7 +64,7 @@ stages:
             {
                   "artifacts": [
                       {
-                          "name": "testName",
+                          "name": "testName.war",
                           "version": "1.$(Build.BuildId)",
                           "currentBuildInfo": "true",
                           "repositoryName": "Pipeline 1"
