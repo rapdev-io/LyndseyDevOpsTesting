@@ -3,4 +3,4 @@ business_applications:
     business_criticality: high
 
 microservice:
-  name: rapdev-web #mandatory
+  name: rapdev-web #mandatory 
