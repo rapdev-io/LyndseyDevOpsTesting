@@ -7,7 +7,7 @@ business_applications:
     tech_owner: 
       name: Andrew Och
       email: andrew.och@example.com #mandatory if include tech_owner
-    support_group: Application Development #mandatory
+    support_group: Application Development #mandatory 
   - name: RapDev.io
 
 microservice:
