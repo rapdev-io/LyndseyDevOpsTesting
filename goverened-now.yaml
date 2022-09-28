@@ -1,1 +1,6 @@
-test
+business_applications:
+  - name: RapDev App #mandatory
+    business_criticality: high
+
+microservice:
+  name: rapdev-web #mandatory
