@@ -10,7 +10,7 @@ business_applications:
   - name: RapDev.io
 
 microservice:
-  name: rapdev-shard #mandatory
+  name: rapdev-shard #mandatory 
   owned_by: #possible to auto-populate this using Business Application Tech Owner
     name: Abel Tuter
     email: abel.tuter@example.com #mandatory if include owner
