@@ -24,7 +24,7 @@ microservice:
     - environment: Perf
       tags:
         servicename: rapdev-shard  
-        env: perf
+        env: perf 
     - environment: Dev
       tags:
         servicename: rapdev-shard  
