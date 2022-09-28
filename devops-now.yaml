@@ -19,16 +19,16 @@ microservice:
   application_services: #list out all of the environments for the microservice 
     - environment: Prod #mandatory
       tags: #list out all of the key/value pairs that the resources for this deployed microservice are tagged with 
-        servicename: rapdev-shard  
+        ServiceName: rapdev-shard  
         env: prod
         cloud: AWS Lab
     - environment: Perf
       tags:
-        servicename: rapdev-shard
+        ServiceName: rapdev-shard
         env: perf 
         cloud: AWS Lab
     - environment: Dev
       tags:
-        servicename: rapdev-shard  
+        ServiceName: rapdev-shard  
         env: dev
         cloud: AWS Lab
