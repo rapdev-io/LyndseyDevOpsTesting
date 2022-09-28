@@ -2,7 +2,7 @@ business_applications:
   - name: RapDevBot #mandatory
     business_owner:
       name: Abraham Lincoln
-      email: abraham.lincoln@example.com #mandatory if include business_owner
+      email: abraham.lincoln@example.com #mandatory if include business_owner 
     tech_owner: 
       name: Andrew Och
       email: andrew.och@example.com #mandatory if include tech_owner
