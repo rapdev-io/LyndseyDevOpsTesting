@@ -76,7 +76,6 @@ stages:
     pool: server
     dependsOn: 'UAT_Deploy'
     steps:
-    - script: echo Production Deploy
     - task: ServiceNow-DevOps-Server-Change-Acceleration@1
       inputs:
         connectedServiceName: 'dev146069'
