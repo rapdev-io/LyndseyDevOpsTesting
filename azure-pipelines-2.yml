@@ -22,7 +22,7 @@ stages:
           {
              "artifacts": [
                 {
-                   "name": "_pipeline-1-build",
+                   "name": "_pipeline-1-build.war",
                    "version": "1.$(Build.BuildId)",
                    "semanticVersion": "1.$(Build.BuildId).0",
                    "repositoryName": "pipeline-1-build-deply-cicd"
@@ -45,12 +45,13 @@ stages:
     - script: echo UAT Deploy
     - task: ServiceNow-DevOps-Agent-Package-Registration@1
       inputs:
+        connectedServiceName: 'dev146069'
         packageName: 'Pipeline1BuildDeploy'
         artifactsPayload: |
           {
               "artifacts": [
               {
-                  "name": "_pipeline-1-build",
+                  "name": "_pipeline-1-build.war",
                   "repositoryName": "pipeline-1-build-deply-cicd",
                   "version": "1.$(build.buildId)",
                   "pipelineName":"$(system.teamProject)/$(build.definitionName)",
