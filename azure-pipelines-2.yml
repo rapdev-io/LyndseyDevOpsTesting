@@ -22,7 +22,8 @@ stages:
     steps:
     - script: echo Unit Tests
   - job: 'Checkmarx_Scan'
-      - script: echo Checkmarx Scan
+    steps:
+    - script: echo Checkmarx Scan
 
 - stage: 'Deploy'
   jobs:
@@ -30,4 +31,5 @@ stages:
     steps:
     - script: echo UAT Deploy
   - job: 'Production_Deploy'
+    steps:
     - script: echo Production Deploy
