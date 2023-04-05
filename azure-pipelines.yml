@@ -15,65 +15,65 @@ stages:
   - job: 'Build'
     steps:
     - script: echo Build
-    - task: ServiceNow-DevOps-Agent-Artifact-Registration@1
-      inputs:
-        connectedServiceName: x
-        artifactsPayload: |
-          {
-            "artifacts": [
-              {
-                  "name": "testName.war",
-                  "version": "1.$(Build.BuildId)",
-                  "semanticVersion": "1.$(Build.BuildId).0",
-                  "repositoryName": "Pipeline 1"
-              }
-            ]
-          }
+#     - task: ServiceNow-DevOps-Agent-Artifact-Registration@1
+#       inputs:
+#         connectedServiceName: x
+#         artifactsPayload: |
+#           {
+#             "artifacts": [
+#               {
+#                   "name": "testName.war",
+#                   "version": "1.$(Build.BuildId)",
+#                   "semanticVersion": "1.$(Build.BuildId).0",
+#                   "repositoryName": "Pipeline 1"
+#               }
+#             ]
+#           }
 
-- stage: 'Test'
-  jobs:
-  - job: 'Unit_Tests'
-    steps:
-    - script: echo Unit Tests
-    - task: CmdLine@2
-      inputs:
-        script: |
-          NOW=$(date +"%Y-%m-%dT%T-0500")
-          testPayload='{"name":"Test-summary-1.$(Build.BuildId).0","duration":0.0,"passedTests":10,"failedTests":1,"skippedTests":0,"blockedTests":0,"totalTests":11,"startTime":"'$NOW'","finishTime":"'$NOW'","artifacts":[{"name":"testName.war","version":"1.$(Build.BuildId)"}]}'
-          echo here payload
-          echo $testPayload
-          echo here 2 payload
-          curl -X POST -H 'Content-Type: application/json' -u 'devops.integration.user:Lyndsey2021'  -d $testPayload 'https://dev86494.service-now.com/api/sn_devops/v1/devops/tool/test?orchestrationToolId\==9002b1302fc60110e42e18aa2799b660\&toolId=8d32f0382fc20110e42e18aa2799b6d1'
+# - stage: 'Test'
+#   jobs:
+#   - job: 'Unit_Tests'
+#     steps:
+#     - script: echo Unit Tests
+#     - task: CmdLine@2
+#       inputs:
+#         script: |
+#           NOW=$(date +"%Y-%m-%dT%T-0500")
+#           testPayload='{"name":"Test-summary-1.$(Build.BuildId).0","duration":0.0,"passedTests":10,"failedTests":1,"skippedTests":0,"blockedTests":0,"totalTests":11,"startTime":"'$NOW'","finishTime":"'$NOW'","artifacts":[{"name":"testName.war","version":"1.$(Build.BuildId)"}]}'
+#           echo here payload
+#           echo $testPayload
+#           echo here 2 payload
+#           curl -X POST -H 'Content-Type: application/json' -u 'devops.integration.user:Lyndsey2021'  -d $testPayload 'https://dev86494.service-now.com/api/sn_devops/v1/devops/tool/test?orchestrationToolId\==9002b1302fc60110e42e18aa2799b660\&toolId=8d32f0382fc20110e42e18aa2799b6d1'
 
 
-  - job: 'Checkmarx_Scan'
-    dependsOn: 'Unit_Tests'
-    steps:
-    - script: echo Checkmarx Scan
+#   - job: 'Checkmarx_Scan'
+#     dependsOn: 'Unit_Tests'
+#     steps:
+#     - script: echo Checkmarx Scan
 
-- stage: 'Deploy'
-  jobs:
-  - job: 'UAT_Deploy'
-    steps:
-    - script: echo UAT Deploy
-    - task: ServiceNow-DevOps-Agent-Package-Registration@1
-      inputs:
-          connectedServiceName: x
-          packageName: 'Package 1'
-          artifactsPayload: |
-            {
-                  "artifacts": [
-                      {
-                          "name": "testName.war",
-                          "version": "1.$(Build.BuildId)",
-                          "currentBuildInfo": "true",
-                          "repositoryName": "Pipeline 1"
-                      }
-                  ]
-            }
+# - stage: 'Deploy'
+#   jobs:
+#   - job: 'UAT_Deploy'
+#     steps:
+#     - script: echo UAT Deploy
+#     - task: ServiceNow-DevOps-Agent-Package-Registration@1
+#       inputs:
+#           connectedServiceName: x
+#           packageName: 'Package 1'
+#           artifactsPayload: |
+#             {
+#                   "artifacts": [
+#                       {
+#                           "name": "testName.war",
+#                           "version": "1.$(Build.BuildId)",
+#                           "currentBuildInfo": "true",
+#                           "repositoryName": "Pipeline 1"
+#                       }
+#                   ]
+#             }
 
-  - job: 'Production_Deploy'
-    #pool: server
-    dependsOn: 'UAT_Deploy'
-    steps:
-    - script: echo Production Deploy
+#   - job: 'Production_Deploy'
+#     #pool: server
+#     dependsOn: 'UAT_Deploy'
+#     steps:
+#     - script: echo Production Deploy
