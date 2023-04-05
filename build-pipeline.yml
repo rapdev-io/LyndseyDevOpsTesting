@@ -16,3 +16,12 @@ stages:
   - job: 'Unit_Tests'
     steps:
     - script: echo Unit Tests
+  - job: 'Checkmarx_Scan'
+    steps:
+    - script: echo Checkmarx Scan
+
+- stage: 'Deploy'
+  jobs:
+  - job: 'Production_Deploy'
+    steps:
+    - script: echo Checkmarx Scan
