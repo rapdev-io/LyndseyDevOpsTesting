@@ -22,11 +22,12 @@ stages:
           {
              "artifacts": [
                 {
-                   "name": "_pipeline-2-build",
+                   "name": "_pipeline-1-build",
                    "version": "1.$(Build.BuildId)",
                    "semanticVersion": "1.$(Build.BuildId).0",
-                   "repositoryName": "pipeline-2-build"
+                   "repositoryName": "pipeline-1-build-deply-cicd"
                 }
+             ]
           }
 - stage: 'Test'
   jobs:
