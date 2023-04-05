@@ -43,6 +43,27 @@ stages:
   - job: 'UAT_Deploy'
     steps:
     - script: echo UAT Deploy
+    - task: ServiceNow-DevOps-Agent-Package-Registration@1
+      inputs:
+        packageName: 'Pipeline1BuildDeploy'
+        artifactsPayload: |
+          {
+              "artifacts": [
+              {
+                  "name": "_pipeline-1-build",
+                  "repositoryName": "pipeline-1-build-deply-cicd",
+                  "version": "1.$(build.buildId)",
+                  "pipelineName":"$(system.teamProject)/$(build.definitionName)",
+                  "taskExecutionNumber":"$(build.buildId)",
+                  "stageName":"$(system.jobDisplayName)",
+                  "branchName":"$(build.sourceBranchName)"
+              }],
+              "pipelineName":"$(system.teamProject)/$(build.definitionName)",
+              "taskExecutionNumber":"$(build.buildId)",
+              "stageName":"$(system.jobDisplayName)",
+              "branchName":"$(build.sourceBranchName)"
+          }
+
   - job: 'Production_Deploy'
     steps:
     - script: echo Production Deploy
