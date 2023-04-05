@@ -87,6 +87,6 @@ stages:
                   "user_name": "devops.integration.user"
                 },
                 "start_date": "2023-05-05 08:00:00",
-                "end_date": "2021-05-08 08:00:00"
+                "end_date": "2023-05-08 08:00:00"
               }
             }
