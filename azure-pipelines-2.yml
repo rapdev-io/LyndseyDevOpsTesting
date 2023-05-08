@@ -73,19 +73,21 @@ stages:
           }
 
   - job: 'Production_Deploy'
-    pool: server
-    dependsOn: 'UAT_Deploy'
     steps:
-    - task: ServiceNow-DevOps-Server-Change-Acceleration@1
-      inputs:
-        connectedServiceName: 'dev146069'
-        changeRequestDetails: |
-          {
-              "attributes": {
-                "requested_by": {
-                  "user_name": "devops.integration.user"
-                },
-                "start_date": "2023-04-05 16:25:00",
-                "end_date": "2023-04-05 17:00:00"
-              }
-            }
+    - script: echo UAT Deploy
+    # pool: server
+    # dependsOn: 'UAT_Deploy'
+    # steps:
+    # - task: ServiceNow-DevOps-Server-Change-Acceleration@1
+    #   inputs:
+    #     connectedServiceName: 'dev146069'
+    #     changeRequestDetails: |
+    #       {
+    #           "attributes": {
+    #             "requested_by": {
+    #               "user_name": "devops.integration.user"
+    #             },
+    #             "start_date": "2023-04-05 16:25:00",
+    #             "end_date": "2023-04-05 17:00:00"
+    #           }
+    #         }
