@@ -15,6 +15,24 @@ stages:
   - job: 'Build'
     steps:
     - script: echo Build
+    - task: ServiceNow-DevOps-Config-Agent-Upload-Config@1
+      inputs:
+        connectedServiceName: 'dev146069'
+        applicationName: 'Test'
+        uploadTarget: 'deployable'
+        deployableName: 'test'
+        configFile: 'test'
+        namePath: 'test'
+        dataFormat: 'json'
+        autoValidate: true
+        autoCommit: false
+        changesetNumber: '555'
+    - task: ServiceNow-DevOps-Config-Agent-Validate-Snapshot@1
+      inputs:
+        connectedServiceName: 'dev146069'
+        applicationName: 'xxx'
+        deployableName: 'xxx'
+        snapshotName: 'xxx'
     - task: ServiceNow-DevOps-Agent-Artifact-Registration@1
       inputs:
         connectedServiceName: 'dev146069'
@@ -91,3 +109,4 @@ stages:
     #             "end_date": "2023-04-05 17:00:00"
     #           }
     #         }
+
