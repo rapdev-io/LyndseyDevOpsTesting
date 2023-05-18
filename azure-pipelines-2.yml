@@ -15,6 +15,19 @@ stages:
   - job: 'Build'
     steps:
     - script: echo Build
+    - task: ServiceNow-DevOps-Config-Agent-Get-Snapshot@1
+      inputs:
+        connectedServiceName: 'dev146069'
+        applicationName: 'xxx'
+        deployableName: 'xxx'
+        changeSetNumber: 'xxx'
+    - task: ServiceNow-DevOps-Config-Agent-Validate-Snapshot@1
+      inputs:
+        connectedServiceName: 'dev146069'
+        applicationName: 'xxx'
+        deployableName: 'xxx'
+        snapshotName: 'xxx'
+
     - task: ServiceNow-DevOps-Config-Agent-Upload-Config@1
       inputs:
         connectedServiceName: 'dev146069'
@@ -26,27 +39,7 @@ stages:
         dataFormat: 'json'
         autoValidate: true
         autoCommit: false
-        changesetNumber: '555'
-    - task: ServiceNow-DevOps-Config-Agent-Validate-Snapshot@1
-      inputs:
-        connectedServiceName: 'dev146069'
-        applicationName: 'xxx'
-        deployableName: 'xxx'
-        snapshotName: 'xxx'
-    - task: ServiceNow-DevOps-Agent-Artifact-Registration@1
-      inputs:
-        connectedServiceName: 'dev146069'
-        artifactsPayload: |
-          {
-             "artifacts": [
-                {
-                   "name": "pipeline-1-build",
-                   "version": "1.$(Build.BuildId)",
-                   "semanticVersion": "1.$(Build.BuildId).0",
-                   "repositoryName": "pipeline-1-build-deply-cicd"
-                }
-             ]
-          }
+        changesetNumber: '555'  
 - stage: 'Test'
   jobs:
   - job: 'Unit_Tests'
