@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: NestedRunner
 
 # Controls when the workflow will run
 on:
@@ -34,6 +34,8 @@ jobs:
     steps:
     - name: Run a one-line script 1
       run: echo Hello, world!  ${{ matrix.fruit }}       
+    - name: Run a one-line script 2
+      run: echo Hello, world!  ${{ matrix.animal }}       
       
    job_number1:
     runs-on: ubuntu-latest
