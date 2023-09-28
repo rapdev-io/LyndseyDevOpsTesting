@@ -46,8 +46,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script 6
+        run: echo Hello, world!!
+  job_number7:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script 7
+        run: echo Hello, world!!
+  job_number8:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script 8
         run: echo Hello, world!
-
+  job_number9:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script 9
+        run: echo Hello, world!
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
