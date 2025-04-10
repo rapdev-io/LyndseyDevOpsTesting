@@ -29,13 +29,13 @@ jobs:
   nest:
     runs-on: ubuntu-latest
     steps:
- #     - name: Checkout
-  #      uses: actions/checkout@v4
-      - uses: ./github/workflows/nestedRunner.yml
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: ./.github/workflows/nestedRunner.yml
 
   sndevops:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: ./github/workflows/GitHubCICDDevOps.yml
+      - uses: ./.github/workflows/GitHubCICDDevOps.yml
