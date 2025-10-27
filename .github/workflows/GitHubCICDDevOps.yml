@@ -68,7 +68,7 @@ jobs:
         
   registerArtifact:
     name: 'Register Artifact'
-    needs: test, sonarScan
+    needs: [test, sonarScan]
     runs-on: ubuntu-latest
     steps:
     - name: ServiceNow DevOps Register Artifact  
