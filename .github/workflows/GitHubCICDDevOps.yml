@@ -86,7 +86,7 @@ jobs:
             tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
             context-github: ${{ toJSON(github) }}
             job-name: 'Register Package'
-            artifacts: '[{"name": "com:customactiondemo","version": "1.${{ github.run_number }}","semanticVersion": "1.${{ github.run_number }}.0","repositoryName": "${{ github.repository }}"}]'
+            artifacts: '[{"name": "app-devops-cicd.jar","version": "1.${{ github.run_number }}","semanticVersion": "1.${{ github.run_number }}.0","repositoryName": "${{ github.repository }}"}]'
             package-name: 'registerpackage.war'
     
   pre-deploy:
@@ -119,5 +119,5 @@ jobs:
             curl -X POST \
             -H "Content-Type: application/json" \
             -H "Authorization: sn_devops.DevOpsToken ${{ secrets.SN_ORCHESTRATION_TOOL_ID}}:${{ secrets.SN_DEVOPS_TOKEN}}" \
-            -d '{"toolId":"${{ secrets.SN_ORCHESTRATION_TOOL_ID }}","artifacts":[{"name":"com:customactiondemo","version":"1.${{ github.run_number }}","semanticVersion":"1.${{ github.run_number }}.0","repositoryName":"${{ github.repository }}"}],"testSummaries":[{"name":"TestSummary","passedTests":183,"failedTests":0,"skippedTests":0,"ignoredTests":0,"blockedTests":0,"totalTests":183,"startTime":"","endTime":"","duration":0,"testType":"JUnit","suites":[]}],"fileContent":"","errorMessage":"","testType":"JUnit"}'  \
+            -d '{"toolId":"${{ secrets.SN_ORCHESTRATION_TOOL_ID }}","artifacts":[{"name":"com:customactiondemo","version":"1.${{ github.run_number }}","semanticVersion":"1.${{ github.run_number }}.0","repositoryName":"${{ github.repository }}"}],"buildNumber":"${{ github.run_number }}","buildId":"${{ github.run_id }}","attemptNumber":"${{ github.run_attempt }}","stageName":"${{ github.job }}","workflow":"${{ github.workflow }}","repository":"${{ github.repository }}","testSummaries":[{"name":"TestSummary","passedTests":183,"failedTests":0,"skippedTests":0,"ignoredTests":0,"blockedTests":0,"totalTests":183,"startTime":"","endTime":"","duration":0,"testType":"JUnit","suites":[]}],"fileContent":"","errorMessage":"","testType":"JUnit","packages": [{"name": "registerpackage-${{ github.run_number }}"}], }'  \
             https://rapdeviodemo1.service-now.com/api/sn_devops/v2/devops/tool/test?toolId=280b2869c35adad097085e0fb001318e
