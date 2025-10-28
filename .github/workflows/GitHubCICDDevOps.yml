@@ -114,3 +114,10 @@ jobs:
       - uses: actions/checkout@v4.2.2
       - name: Run a one-line script
         run: echo Hello, world!
+      - name: ServiceNow DevOps Post Unit Test Results
+        run: |
+            curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: sn_devops.DevOpsToken ${{ secrets.SN_ORCHESTRATION_TOOL_ID}}:${{ secrets.SN_DEVOPS_TOKEN}}" \
+            -d '{"toolId":"${{ secrets.SN_ORCHESTRATION_TOOL_ID }}","artifacts":[{"name":"com:customactiondemo","version":"1.${{ github.run_number }}","semanticVersion":"1.${{ github.run_number }}.0","repositoryName":"${{ github.repository }}"}],"testSummaries":[{"name":"TestSummary","passedTests":183,"failedTests":0,"skippedTests":0,"ignoredTests":0,"blockedTests":0,"totalTests":183,"startTime":"","endTime":"","duration":0,"testType":"JUnit","suites":[]}],"fileContent":"","errorMessage":"","testType":"JUnit"}'  \
+            https://rapdeviodemo1.service-now.com/api/sn_devops/v2/devops/tool/test?toolId=280b2869c35adad097085e0fb001318e
