@@ -14,22 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-          fruit: [apple, pear]
-          animal: [cat, dog]
-          include:
-          - color: green
-          - color: pink
-            animal: cat
-          - fruit: apple
-            shape: circle
-          - fruit: banana
-          - fruit: banana
-            animal: cat
+        version: [10, 12, 14]
+        os: [ubuntu-latest, windows-latest]
     steps:
     - name: Run a one-line script 1
-      run: echo Hello, world!  ${{ matrix.fruit }}       
-    - name: Run a one-line script 2
-      run: echo Hello, world!  ${{ matrix.animal }}       
+      run: echo Hello, world!      
       
    job_number1:
     runs-on: ubuntu-latest
