@@ -38,16 +38,7 @@ jobs:
           -H "Authorization: sn_devops.DevOpsToken ${{ secrets.SN_ORCHESTRATION_TOOL_ID}}:${{ secrets.SN_DEVOPS_TOKEN}}" \
           -d '{"toolId":"${{ secrets.SN_ORCHESTRATION_TOOL_ID }}","buildNumber":"${{ github.run_number }}","buildId":"${{ github.run_id }}","attemptNumber":"${{ github.run_attempt }}","stageName":"${{ github.job }}","workflow":"${{ github.workflow }}","repository":"${{ github.repository }}","testSummaries":[{"name":"TestSummary-${{ github.run_number }}-${{ github.job }}","passedTests":183,"failedTests":0,"skippedTests":0,"ignoredTests":0,"blockedTests":0,"totalTests":183,"startTime":"","endTime":"","duration":0,"testType":"JUnit","suites":[]}],"fileContent":"","errorMessage":"","testType":"JUnit"}'  \
           https://rapdeviodemo1.service-now.com/api/sn_devops/v2/devops/tool/test?toolId=280b2869c35adad097085e0fb001318e
-    - name: ServiceNow DevOps Sonar Scan Results
-      uses: ServiceNow/servicenow-devops-sonar@v3.1.0
-      with:
-         devops-integration-token: ${{ secrets.SN_DEVOPS_TOKEN}}
-         instance-url: ${{ secrets.SN_INSTANCE_URL }}
-         tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-         context-github: ${{ toJSON(github) }}
-         job-name: 'Test'
-         sonar-host-url: ${{ secrets.SONAR_URL }}
-         sonar-project-key: '["test1","test2"]'  
+
   # sonarScan:
   #     name: 'Sonar Scan'
   #     needs: build
