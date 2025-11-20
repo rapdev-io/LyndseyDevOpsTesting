@@ -101,14 +101,13 @@ jobs:
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           job-name: ${{ github.job }}
           context-github: ${{ toJSON(github) }}
-          change-request: '{}'
-          deployment-gate: '{"environment":"Production","jobName":"My deploy test"}'
+          change-request: '{"attributes":{}}'
+        
         
   
   deploy:
     name: 'My deploy test'
     needs: pre-deploy
-    environment: Production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
