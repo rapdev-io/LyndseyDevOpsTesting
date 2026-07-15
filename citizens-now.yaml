@@ -1,0 +1,22 @@
+business_applications:
+  - system_id: <SYSID-XXX>
+
+microservice: #this maps to SDLC Component
+  name: <name>
+  install_status: <install_status> #possible values are Installed, Absent, Credit, On Order, In Maintenance, Pending Install, Pending Repair, In Stock, Retired, Stolen
+  operational_status: <operational_status> #possible values are Operational, Non-Operational, Repair in Progress, DR Standby, Ready, Retired
+  sdlc_type: <sdlc_type> #possible values are Application, Infrastructure
+  support_group: <name> #this is a ServiceNow group
+  description: <description>
+  designated_dependencies: #list child dependencies
+    - <microservice-name> 
+  application_services: #list out all of the normalized environments for the microservice
+    - environment: <env> #possible values are Production, Staging, QA, Test, Development, Demonstration, Training
+      install_status: <install_status> #possible values are Installed, Absent, Credit, On Order, In Maintenance, Pending Install, Pending Repair, In Stock, Retired, Stolen
+      operational_status: <operational_status> #possible values are Operational, Non-Operational, Repair in Progress, DR Standby, Ready, Retired, Pipeline, Catalog
+      tags: #list out the key/value pairs that the resources for this deployed microservice are tagged with to uniquely identify
+        BusinessMapping: <3_letter_code>
+        ApplicationName: <application_name>
+        Environment: <environment>
+        RepoName: <repo_name>
+   
