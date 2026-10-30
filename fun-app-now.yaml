@@ -1,20 +1,27 @@
 business_applications:
-  - name: HR Onboarding
+  - name: Policy as Code #mandatory 
+    business_owner:
+      name: Meghan Murray
+      email: meghan@rapdev.io #mandatory if include business_owner 
+    tech_owner: 
+      name: Lyndsey Cohen
+      email: lyndsey.cohen@rapdev.io #mandatory if include tech_owner 
+    support_group: Demo Engineering #mandatory
 
 microservice:
-  name: fun-app #mandatory 
+  name: svc-policyactions #mandatory 
   owned_by: #possible to auto-populate this using Business Application Tech Owner
-    name: Tameem Hourani
-    email: tameem@rapdev.io #mandatory if include owner
+    name: Lyndsey Cohen
+    email: lyndsey.cohen@rapdev.io #mandatory if include owner
   support_group: Demo Engineering #mandatory
   application_services: #list out all of the environments for the microservice
     - environment: Dev #mandatory
       tags: #list out all of the key/value pairs that the resources for this deployed microservice are tagged with
-        tags.datadoghq.com/env: dev
-        tags.datadoghq.com/service: productcatalogservice
+        tags.datadoghq.com/env: test1 #dev
+        tags.datadoghq.com/service: test2 #productcatalogservice
     - environment: Prod #mandatory
       tags: #list out all of the key/value pairs that the resources for this deployed microservice are tagged with
-        tags.datadoghq.com/env: prod
-        tags.datadoghq.com/service: productcatalogservice
+        tags.datadoghq.com/env: test1 #prod
+        tags.datadoghq.com/service: test2 #productcatalogservice
   
   
