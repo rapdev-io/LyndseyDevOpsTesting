@@ -1,8 +1,8 @@
 business_applications:
-  - name: Photoshop CS6 #mandatory 
+  - name: Policy as Code #mandatory 
 
 microservice:
-  name: svc-policyactions2 #mandatory 
+  name: svc-policyactions #mandatory 
   owned_by: #possible to auto-populate this using Business Application Tech Owner
     name: Lyndsey Cohen
     email: lyndsey.cohen@rapdev.io #mandatory if include owner
